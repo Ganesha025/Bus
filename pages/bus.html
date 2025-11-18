@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bus Seat Layout – 1x2 RedBus Premium UI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-[#F3F6FF] to-[#F7F2FF] text-gray-800">
+
+<header class="w-full bg-white/90 backdrop-blur-md shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <h1 class="text-3xl font-black tracking-tight text-gray-900">Bus Seat Layout</h1>
+    <button onclick="goBack()" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 transition text-white rounded-xl font-semibold shadow-md active:scale-95">
+      Back
+    </button>
+  </div>
+</header>
+
+<section class="max-w-7xl mx-auto px-6 mt-6">
+  <div id="busInfo" class="bg-white rounded-3xl p-8 shadow-xl border border-gray-200"></div>
+</section>
+
+<section class="max-w-4xl mx-auto px-6 mt-10 mb-32">
+  <div class="bg-white rounded-3xl p-10 shadow-2xl border border-gray-200">
+    <div class="w-full flex justify-center mb-10">
+      <div class="bg-gray-900 text-white px-8 py-2 rounded-lg text-sm tracking-wide shadow">
+        DRIVER
+      </div>
+    </div>
+
+    <div id="seatsGrid"
+      class="grid grid-cols-3 gap-4 sm:gap-6 mx-auto"
+      style="max-width: 420px;">
+    </div>
+
+    <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 text-sm">
+      <div class="flex items-center gap-3">
+        <div class="w-6 h-6 bg-blue-100 border border-blue-300 rounded-md shadow-sm"></div> <span>Seater</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="w-6 h-6 bg-purple-100 border border-purple-300 rounded-md shadow-sm"></div> <span>Sleeper</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="w-6 h-6 bg-red-200 border border-red-300 rounded-md shadow-sm"></div> <span>Booked</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="w-6 h-6 bg-indigo-500 border-indigo-700 rounded-md shadow-sm"></div> <span>Selected</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-md shadow-2xl border-t border-gray-200 p-5 flex items-center justify-between z-50">
+  <div class="text-xl font-bold text-gray-800">
+    Selected: <span id="selectedCount">0</span> seats
+  </div>
+  <button onclick="bookSeats()" class="px-10 py-3 bg-indigo-600 hover:bg-indigo-700 transition text-white text-lg font-semibold rounded-2xl shadow-xl active:scale-95">
+    Book Seats
+  </button>
+</div>
+
+<script>
+let selectedSeats = []
+let busObj, routeObj, fullData
+
+function loadBusDetails() {
+  const busId = localStorage.getItem("selectedBusId")
+  const routeId = localStorage.getItem("selectedRouteId")
+
+  fetch("../data.json")
+    .then(res => res.json())
+    .then(data => {
+      fullData = data
+      routeObj = data.routes.find(r => r.id === routeId)
+      busObj = routeObj.buses.find(b => b.id === busId)
+
+      document.getElementById("busInfo").innerHTML = `
+        <div class="flex flex-col gap-3">
+          <h2 class="text-3xl font-bold">${busObj.operator}</h2>
+          <div class="text-gray-600 font-medium">${busObj.bus_type}</div>
+          <div class="mt-3 flex gap-10 text-gray-700 font-semibold">
+            <div>
+              <span class="text-gray-500 text-sm">Departure</span><br>
+              <span class="text-xl">${busObj.departure}</span>
+            </div>
+            <div>
+              <span class="text-gray-500 text-sm">Arrival</span><br>
+              <span class="text-xl">${busObj.arrival}</span>
+            </div>
+          </div>
+          <div class="mt-3 text-gray-700 text-lg">
+            Route: <span class="font-semibold">${routeObj.from} → ${routeObj.to}</span>
+          </div>
+        </div>
+      `
+      renderSeats(busObj.seats)
+    })
+}
+
+function renderSeats(seats) {
+  const grid = document.getElementById("seatsGrid")
+  grid.innerHTML = ""
+
+  seats.forEach((seat, i) => {
+    let base =
+      "relative flex items-center justify-center font-bold cursor-pointer shadow-md transition active:scale-95 border-2 rounded-xl select-none text-sm sm:text-base"
+
+    let type =
+      seat.type === "Seater"
+        ? "bg-blue-50 border-blue-200 h-14 sm:h-20"
+        : "bg-purple-50 border-purple-200 h-24 sm:h-32"
+
+    let booked = "bg-red-200 border-red-400 cursor-not-allowed text-red-800"
+    let selected = "bg-indigo-500 border-indigo-700 text-white"
+
+    let color =
+      seat.status === "booked" ? booked :
+      seat.status === "selected" ? selected :
+      type
+
+    let div = document.createElement("div")
+
+    let isLeft = (i % 3 === 0)
+    let isRight = (i % 3 !== 0)
+
+    div.className = base + " " + color
+
+    if (isLeft) div.classList.add("mr-6", "sm:mr-10")
+    if (isRight) div.classList.add("ml-1", "sm:ml-3")
+
+    div.textContent = seat.seat_id
+
+    div.onclick = function () {
+      if (seat.status === "booked") return
+      if (seat.status === "selected") {
+        seat.status = "available"
+        selectedSeats = selectedSeats.filter(s => s !== seat.seat_id)
+      } else {
+        seat.status = "selected"
+        selectedSeats.push(seat.seat_id)
+      }
+      document.getElementById("selectedCount").textContent = selectedSeats.length
+      renderSeats(busObj.seats)
+    }
+
+    grid.appendChild(div)
+  })
+}
+
+function bookSeats() {
+  if (!selectedSeats.length) {
+    alert("Please select at least 1 seat.")
+    return
+  }
+
+  busObj.seats.forEach(seat => {
+    if (selectedSeats.includes(seat.seat_id)) seat.status = "booked"
+  })
+
+  renderSeats(busObj.seats)
+  alert("Booked: " + selectedSeats.join(", "))
+  selectedSeats = []
+  document.getElementById("selectedCount").textContent = 0
+}
+
+function goBack() {
+  window.location.href = "routelist.html"
+}
+
+window.onload = loadBusDetails
+</script>
+
+</body>
+</html>

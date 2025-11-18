@@ -1,0 +1,490 @@
+{
+  "routes": [
+    {
+      "id": "route1",
+      "from": "Chennai",
+      "to": "Coimbatore",
+      "via": ["Vellore", "Salem", "Erode"],
+      "buses": [
+        {
+          "id": "bus1",
+          "operator": "KPN Travels",
+          "departure": "08:00",
+          "arrival": "16:00",
+          "bus_type": "AC Sleeper",
+          "seats": [
+            { "seat_id": "ub1", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub2", "type": "Seater", "status": "available" },
+            { "seat_id": "ub3", "type": "Seater", "status": "available" },
+            { "seat_id": "ub4", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub5", "type": "Seater", "status": "available" },
+            { "seat_id": "ub6", "type": "Seater", "status": "available" },
+            { "seat_id": "ub7", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub8", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub9", "type": "Seater", "status": "available" },
+            { "seat_id": "ub10", "type": "Seater", "status": "available" },
+            { "seat_id": "ub11", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub12", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub13", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub14", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub15", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub16", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub17", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub18", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub19", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub20", "type": "Sleeper", "status": "available" }
+          ]
+        },
+        {
+          "id": "bus2",
+          "operator": "SRS Travels",
+          "departure": "09:30",
+          "arrival": "17:30",
+          "bus_type": "Non AC Seater/Sleeper",
+          "seats": [
+            { "seat_id": "ub1", "type": "Seater", "status": "available" },
+            { "seat_id": "ub2", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub3", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub4", "type": "Seater", "status": "available" },
+            { "seat_id": "ub5", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub6", "type": "Seater", "status": "available" },
+            { "seat_id": "ub7", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub8", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub9", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub10", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub11", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub12", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub13", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub14", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub15", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub16", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub17", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub18", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub19", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub20", "type": "Sleeper", "status": "booked" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "route2",
+      "from": "Madurai",
+      "to": "Tirunelveli",
+      "via": ["Virudhunagar", "Sivaganga"],
+      "buses": [
+        {
+          "id": "bus3",
+          "operator": "Rathimeena Travels",
+          "departure": "07:00",
+          "arrival": "11:00",
+          "bus_type": "AC Sleeper",
+          "seats": [
+            { "seat_id": "ub1", "type": "Seater", "status": "available" },
+            { "seat_id": "ub2", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub3", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub4", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub5", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub6", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub7", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub8", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub9", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub10", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub11", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub12", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub13", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub14", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub15", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub16", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub17", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub18", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub19", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub20", "type": "Sleeper", "status": "booked" }
+          ]
+        },
+        {
+          "id": "bus4",
+          "operator": "TNSTC",
+          "departure": "12:00",
+          "arrival": "17:00",
+          "bus_type": "Govt Ordinary",
+          "seats": [
+            { "seat_id": "ub1", "type": "Seater", "status": "available" },
+            { "seat_id": "ub2", "type": "Seater", "status": "available" },
+            { "seat_id": "ub3", "type": "Seater", "status": "available" },
+            { "seat_id": "ub4", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub5", "type": "Seater", "status": "available" },
+            { "seat_id": "ub6", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub7", "type": "Seater", "status": "available" },
+            { "seat_id": "ub8", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub9", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub10", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub11", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub12", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub13", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub14", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub15", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub16", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub17", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub18", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub19", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub20", "type": "Sleeper", "status": "available" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "route3",
+      "from": "Salem",
+      "to": "Erode",
+      "via": ["Namakkal"],
+      "buses": [
+        {
+          "id": "bus5",
+          "operator": "YBM Travels",
+          "departure": "06:15",
+          "arrival": "08:00",
+          "bus_type": "AC Sleeper",
+          "seats": [
+            { "seat_id": "ub1", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub2", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub3", "type": "Seater", "status": "available" },
+            { "seat_id": "ub4", "type": "Seater", "status": "available" },
+            { "seat_id": "ub5", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub6", "type": "Seater", "status": "available" },
+            { "seat_id": "ub7", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub8", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub9", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub10", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub11", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub12", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub13", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub14", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub15", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub16", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub17", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub18", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub19", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub20", "type": "Sleeper", "status": "available" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "route4",
+      "from": "Chennai",
+      "to": "Bangalore",
+      "via": ["Vellore", "Krishnagiri"],
+      "buses": [
+        {
+          "id": "bus6",
+          "operator": "Parveen Travels",
+          "departure": "22:00",
+          "arrival": "04:00",
+          "bus_type": "Volvo AC",
+          "seats": [
+            { "seat_id": "ub1", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub2", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub3", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub4", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub5", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub6", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub7", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub8", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub9", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub10", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub11", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub12", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub13", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub14", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub15", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub16", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub17", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub18", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub19", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub20", "type": "Sleeper", "status": "booked" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "route5",
+      "from": "Coimbatore",
+      "to": "Ooty",
+      "via": ["Mettupalayam"],
+      "buses": [
+        {
+          "id": "bus7",
+          "operator": "TNSTC",
+          "departure": "07:15",
+          "arrival": "10:30",
+          "bus_type": "Govt Ordinary",
+          "seats": [
+            { "seat_id": "ub1", "type": "Seater", "status": "available" },
+            { "seat_id": "ub2", "type": "Seater", "status": "available" },
+            { "seat_id": "ub3", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub4", "type": "Seater", "status": "available" },
+            { "seat_id": "ub5", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub6", "type": "Seater", "status": "available" },
+            { "seat_id": "ub7", "type": "Seater", "status": "available" },
+            { "seat_id": "ub8", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub9", "type": "Seater", "status": "available" },
+            { "seat_id": "ub10", "type": "Seater", "status": "available" },
+            { "seat_id": "ub11", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub12", "type": "Seater", "status": "available" },
+            { "seat_id": "ub13", "type": "Seater", "status": "available" },
+            { "seat_id": "ub14", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub15", "type": "Seater", "status": "available" },
+            { "seat_id": "ub16", "type": "Seater", "status": "available" },
+            { "seat_id": "ub17", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub18", "type": "Seater", "status": "available" },
+            { "seat_id": "ub19", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub20", "type": "Seater", "status": "available" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "route6",
+      "from": "Madurai",
+      "to": "Rameswaram",
+      "via": ["Ramanathapuram"],
+      "buses": [
+        {
+          "id": "bus8",
+          "operator": "Rathimeena Travels",
+          "departure": "06:30",
+          "arrival": "11:00",
+          "bus_type": "AC Sleeper",
+          "seats": [
+            { "seat_id": "ub1", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub2", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub3", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub4", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub5", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub6", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub7", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub8", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub9", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub10", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub11", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub12", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub13", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub14", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub15", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub16", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub17", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub18", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub19", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub20", "type": "Sleeper", "status": "available" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "route7",
+      "from": "Chennai",
+      "to": "Pondicherry",
+      "via": ["Tindivanam"],
+      "buses": [
+        {
+          "id": "bus9",
+          "operator": "Orange Tours",
+          "departure": "08:45",
+          "arrival": "13:30",
+          "bus_type": "AC Seater",
+          "seats": [
+            { "seat_id": "ub1", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub2", "type": "Seater", "status": "available" },
+            { "seat_id": "ub3", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub4", "type": "Seater", "status": "available" },
+            { "seat_id": "ub5", "type": "Seater", "status": "available" },
+            { "seat_id": "ub6", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub7", "type": "Seater", "status": "available" },
+            { "seat_id": "ub8", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub9", "type": "Seater", "status": "available" },
+            { "seat_id": "ub10", "type": "Seater", "status": "available" },
+            { "seat_id": "ub11", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub12", "type": "Seater", "status": "available" },
+            { "seat_id": "ub13", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub14", "type": "Seater", "status": "available" },
+            { "seat_id": "ub15", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub16", "type": "Seater", "status": "available" },
+            { "seat_id": "ub17", "type": "Seater", "status": "available" },
+            { "seat_id": "ub18", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub19", "type": "Seater", "status": "available" },
+            { "seat_id": "ub20", "type": "Seater", "status": "booked" }
+          ]
+        },
+        {
+          "id": "bus10",
+          "operator": "IntrCity SmartBus",
+          "departure": "14:00",
+          "arrival": "18:45",
+          "bus_type": "AC Sleeper",
+          "seats": [
+            { "seat_id": "ub1", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub2", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub3", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub4", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub5", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub6", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub7", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub8", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub9", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub10", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub11", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub12", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub13", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub14", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub15", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub16", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub17", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub18", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub19", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub20", "type": "Sleeper", "status": "booked" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "route8",
+      "from": "Trichy",
+      "to": "Kanyakumari",
+      "via": ["Madurai", "Tirunelveli"],
+      "buses": [
+        {
+          "id": "bus11",
+          "operator": "KPN Travels",
+          "departure": "20:00",
+          "arrival": "06:00",
+          "bus_type": "Multi Axle Sleeper",
+          "seats": [
+            { "seat_id": "ub1", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub2", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub3", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub4", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub5", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub6", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub7", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub8", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub9", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub10", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub11", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub12", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub13", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub14", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub15", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub16", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub17", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub18", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub19", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub20", "type": "Sleeper", "status": "booked" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "route9",
+      "from": "Salem",
+      "to": "Chennai",
+      "via": ["Kanchipuram"],
+      "buses": [
+        {
+          "id": "bus12",
+          "operator": "SRS Travels",
+          "departure": "23:30",
+          "arrival": "05:30",
+          "bus_type": "AC Sleeper",
+          "seats": [
+            { "seat_id": "ub1", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub2", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub3", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub4", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub5", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub6", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub7", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub8", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub9", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub10", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub11", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub12", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub13", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub14", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub15", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub16", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub17", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub18", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub19", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub20", "type": "Sleeper", "status": "available" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "route10",
+      "from": "Coimbatore",
+      "to": "Kochi",
+      "via": ["Palakkad"],
+      "buses": [
+        {
+          "id": "bus13",
+          "operator": "Greenline Travels",
+          "departure": "09:00",
+          "arrival": "13:30",
+          "bus_type": "AC Seater",
+          "seats": [
+            { "seat_id": "ub1", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub2", "type": "Seater", "status": "available" },
+            { "seat_id": "ub3", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub4", "type": "Seater", "status": "available" },
+            { "seat_id": "ub5", "type": "Seater", "status": "available" },
+            { "seat_id": "ub6", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub7", "type": "Seater", "status": "available" },
+            { "seat_id": "ub8", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub9", "type": "Seater", "status": "available" },
+            { "seat_id": "ub10", "type": "Seater", "status": "available" },
+            { "seat_id": "ub11", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub12", "type": "Seater", "status": "available" },
+            { "seat_id": "ub13", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub14", "type": "Seater", "status": "available" },
+            { "seat_id": "ub15", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub16", "type": "Seater", "status": "available" },
+            { "seat_id": "ub17", "type": "Seater", "status": "available" },
+            { "seat_id": "ub18", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub19", "type": "Seater", "status": "available" },
+            { "seat_id": "ub20", "type": "Seater", "status": "booked" }
+          ]
+        },
+        {
+          "id": "bus14",
+          "operator": "KPN Travels",
+          "departure": "15:30",
+          "arrival": "20:00",
+          "bus_type": "Non AC Seater/Sleeper",
+          "seats": [
+            { "seat_id": "ub1", "type": "Seater", "status": "available" },
+            { "seat_id": "ub2", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub3", "type": "Seater", "status": "available" },
+            { "seat_id": "ub4", "type": "Seater", "status": "booked" },
+            { "seat_id": "ub5", "type": "Seater", "status": "available" },
+            { "seat_id": "ub6", "type": "Seater", "status": "available" },
+            { "seat_id": "ub7", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub8", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub9", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub10", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub11", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub12", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub13", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub14", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub15", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub16", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub17", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub18", "type": "Sleeper", "status": "available" },
+            { "seat_id": "ub19", "type": "Sleeper", "status": "booked" },
+            { "seat_id": "ub20", "type": "Sleeper", "status": "available" }
+          ]
+        }
+      ]
+    }
+  ]
+}   
