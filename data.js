@@ -1,0 +1,90 @@
+{
+  "array": [
+    {
+      "profile": {
+        "first_name": "GANESH",
+        "last_name": "S",
+        "gender": "MALE",
+        "date_of_birth": "06-04-2005",
+        "blood_group": "B+",
+        "mobile_number": "9895120570",
+        "email": "221CA025@kongunaducollege.ac.in",
+        "marital_status": "-",
+        "alternative_mobile_number": "9940414005",
+        "alternative_email": "",
+        "pan_no": "",
+        "aadhaar_no": "6923 1881 3597",
+        "community": "-",
+        "e_community_certificate_number": "",
+        "caste": "",
+        "religion": "HINDU",
+        "geographic_classification": "-",
+        "mother_tongue": "TAMIL",
+        "nationality": "INDIAN",
+        "nativity": "TAMIL NADU",
+        "profile_status": "ACTIVE",
+        "login_required": "YES",
+        "user_name": "221CA025"
+      }
+    },
+    {
+      "personal": {
+        "12th_register_number": "5050778",
+        "12th_school_name": "Success. Matric.Hr.Sec. School",
+        "12th_school_address": "Serndhamangalam main road THIRUMALAPURAM -627857",
+        "12th_school_board": "HSC",
+        "12th_type_of_school": "PRIVATE SCHOOL",
+        "physically_challenged": "NO",
+        "medium_of_instruction": "ENGLISH",
+        "father_mother_guardian_farmer_or_labourer": "NO",
+        "ex_serviceman_son_or_daughter": "NO",
+        "physically_challenged_udid_number": "",
+        "represented_in_sports": "NO",
+        "ncc_a_certificate_holder": "NO",
+        "tamil_origin_from_andaman": "NO",
+        "studied_tamil_in_10th": "YES",
+        "native_place": "",
+        "mother_tongue": "-",
+        "extra_curricular_activities": "",
+        "hostel_accommodation": "-",
+        "qualifying_exam_passed_details": "",
+        "name_of_college": "",
+        "name_of_university": "",
+        "12th_percentage_of_marks": "",
+        "12th_month_year_of_passing": "",
+        "ug_percentage_of_marks": "",
+        "ug_month_year_of_passing": ""
+      }
+    },
+    {
+      "missdata": {
+        "regulations": "2022",
+        "batches": "2022",
+        "degree_branches": "B.C.A. COMPUTER APPLICATIONS",
+        "first_name": "GANESH",
+        "last_name": "S",
+        "register_number": "221CA025",
+        "roll_number": "221CA025",
+        "admission_number": "620/22",
+        "emis_number": "3329100231400009",
+        "umis_no": "9001945287",
+        "community": "BC",
+        "student_status": "PASSED OUT",
+        "mode_of_education": "FULL TIME",
+        "admission_date": "05-08-2022",
+        "date_of_joining": "05-08-2022",
+        "date_of_leaving": "16-04-2025",
+        "section": "MAIN",
+        "medium": "ENGLISH",
+        "current_semester": "PASSED OUT",
+        "is_hosteller": "YES NO",
+        "is_transport": "YES NO",
+        "special_categories": "YES NO",
+        "tc_issued_on": "30-04-2025",
+        "cc_issued_on": "",
+        "part1_language": "TAMIL",
+        "remarks": ""
+      }
+    }
+  ]
+}
