@@ -9,33 +9,24 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     * { font-family: 'Inter', sans-serif; }
-    
     .floating-input { position: relative; margin-top: 20px; }
     .floating-input input, .floating-input select { 
       width: 100%; padding: 16px; border: 1.5px solid #e2e8f0; border-radius: 8px; 
       background: white; font-size: 16px; outline: none; transition: all 0.3s ease; 
-    }
-    .floating-input select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E"); background-position: right 16px center; background-repeat: no-repeat; background-size: 16px; }
-    .floating-input label { 
+    }.floating-input select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E"); background-position: right 16px center; background-repeat: no-repeat; background-size: 16px; }.floating-input label { 
       position: absolute; top: 16px; left: 16px; font-size: 16px; color: #6b7280; 
       pointer-events: none; transition: all 0.3s ease; background: white; padding: 0 4px; 
-    }
-    .floating-input input:focus, .floating-input select:focus { border-color: #7c3aed; box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1); }
-    .floating-input input:focus + label, .floating-input input:not(:placeholder-shown) + label, .floating-input select:focus + label, .floating-input select:not([value=""]) + label { 
+    } .floating-input input:focus, .floating-input select:focus { border-color: #7c3aed; box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1); }.floating-input input:focus + label, .floating-input input:not(:placeholder-shown) + label, .floating-input select:focus + label, .floating-input select:not([value=""]) + label { 
       top: -8px; font-size: 12px; color: #7c3aed; font-weight: 500; 
-    }
-    .floating-input.filled label { top: -8px; font-size: 12px; color: #7c3aed; font-weight: 500; }
-    
+    }.floating-input.filled label { top: -8px; font-size: 12px; color: #7c3aed; font-weight: 500; }
     .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); }
     .gradient-btn { background: linear-gradient(135deg, #7c3aed, #6d28d9); border-radius: 10px; font-weight: 500; transition: all 0.3s ease; border: none; }
     .gradient-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(124, 58, 237, 0.3); }
     .gradient-btn:active { transform: translateY(0); }
-    
     .fade-in { animation: fadeIn 0.4s ease; }
     .slide-up { animation: slideUp 0.4s ease; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    
     .success-animation { width: 80px; height: 80px; margin: 0 auto; position: relative; }
     .success-animation .checkmark { width: 80px; height: 80px; border-radius: 50%; display: block; stroke-width: 3; stroke: #10b981; stroke-miterlimit: 10; box-shadow: inset 0 0 0 #10b981; animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both; }
     .success-animation .checkmark__circle { stroke-dasharray: 166; stroke-dashoffset: 166; stroke-width: 3; stroke-miterlimit: 10; stroke: #10b981; fill: none; animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards; }
@@ -46,9 +37,7 @@
   </style>
 </head>
 <body class="bg-gradient-to-br from-purple-50 to-indigo-100 min-h-screen flex items-center justify-center p-4">
-
 <div class="w-full max-w-md space-y-6">
-  
   <div class="text-center mb-8">
     <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl">
       <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none">
@@ -60,7 +49,6 @@
     <h1 class="text-3xl font-semibold text-gray-800">IRCTC Payment</h1>
     <p class="text-gray-600 mt-2">Fast & Secure Railway Payments</p>
   </div>
-
   <div id="pnrSection" class="glass-card p-8 fade-in">
     <h2 class="text-xl font-semibold text-gray-800 mb-6">Check Ticket Status</h2>
     <div class="space-y-6">
@@ -74,7 +62,6 @@
       <button id="checkStatusBtn" class="gradient-btn w-full py-3.5 px-4 text-white font-semibold text-lg">Check Status</button>
     </div>
   </div>
-
   <div id="ticketDetails" class="glass-card p-8 hidden slide-up">
     <h2 class="text-xl font-semibold text-gray-800 mb-6">Ticket Details</h2>
     <div class="space-y-4 mb-6">
@@ -85,7 +72,6 @@
     </div>
     <button id="payBtn" class="gradient-btn w-full py-3.5 px-4 text-white font-semibold text-lg">Proceed to Pay</button>
   </div>
-
   <div id="paymentSection" class="glass-card p-8 hidden slide-up">
     <h2 class="text-xl font-semibold text-gray-800 mb-6">Payment Method</h2>
     <div class="space-y-6">
@@ -98,7 +84,6 @@
       <button id="makePayment" class="gradient-btn w-full py-3.5 px-4 text-white font-semibold text-lg hidden">Continue Payment</button>
     </div>
   </div>
-
   <div id="otpSection" class="glass-card p-8 hidden slide-up">
     <h2 class="text-xl font-semibold text-gray-800 mb-6">OTP Verification</h2>
     <div class="space-y-6">
@@ -111,21 +96,18 @@
       <button id="verifyOtp" class="gradient-btn w-full py-3.5 px-4 text-white font-semibold text-lg">Verify OTP</button>
     </div>
   </div>
-
   <div id="successMessage" class="glass-card p-8 text-center hidden fade-in">
     <div class="success-animation mb-6">
-      <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
-        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-      </svg>
-    </div>
+      <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" width="52" height="52">
+  <circle cx="26" cy="26" r="25" fill="none" stroke="#4CAF50" stroke-width="4"/>
+  <path fill="none" stroke="#4CAF50" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+</svg>
+ </div>
     <h3 class="text-2xl font-semibold text-gray-800 mb-3">Payment Successful!</h3>
     <p class="text-gray-600 mb-6">Your ticket has been confirmed</p>
     <button onclick="location.reload()" class="gradient-btn py-3 px-6 text-white font-semibold">Check Another Ticket</button>
   </div>
-
 </div>
-
 <script>
 $(document).ready(function(){
   var tickets = {
@@ -144,12 +126,10 @@ $(document).ready(function(){
   });
   function hideAllSections() {
     $("#pnrSection, #ticketDetails, #paymentSection, #otpSection, #successMessage").addClass("hidden");
-  }
-  function showSection(section) {
+  }function showSection(section) {
     hideAllSections();
     setTimeout(() => section.removeClass("hidden").addClass("slide-up"), 50);
-  }
-  $("#checkStatusBtn").click(function(){
+  }$("#checkStatusBtn").click(function(){
     var pnr = $("#pnr").val().trim();
     $("#pnrErr").text("");
     $("#infoMessage").removeClass("hidden").addClass("text-purple-600").text("Checking ticket status...");
@@ -180,14 +160,12 @@ $(document).ready(function(){
         $("#infoMessage").addClass("hidden"); 
       }
     }, 800);
-  });
-  $("#payBtn").click(function(){
+  });$("#payBtn").click(function(){
     if($("#status").text().trim() === "CONFIRMED"){
       showSection($("#paymentSection"));
       $("#infoMessage").addClass("hidden");
     }
-  });
-  $("#paymentMethod").change(function(){
+  });$("#paymentMethod").change(function(){
     var method = $(this).val();
     $("#methodErr").text("");
     $("#paymentFields").html("");
@@ -203,8 +181,7 @@ $(document).ready(function(){
       $(this).on('blur', function() { if ($(this).val() === '') $(this).parent().removeClass('filled'); });
     });
     setTimeout(() => $("#makePayment").removeClass("hidden").addClass("slide-up"), 100);
-  });
-  $("#makePayment").click(function(){
+  });$("#makePayment").click(function(){
     var method = $("#paymentMethod").val();
     $("#methodErr").text("");
     if(method === ""){ $("#methodErr").text("Please choose a payment method"); return; }
@@ -213,23 +190,20 @@ $(document).ready(function(){
       $("#stationErr").text(""); 
       if(!/^[A-Z]{3,4}$/.test(code)){ $("#stationErr").text("Station code must be 3-4 uppercase letters"); return; } 
       finishPayment(); 
-    }
-    if(method === "upi"){ 
+    }if(method === "upi"){ 
       var upi = $("#upiId").val().trim(), confirm = $("#upiConfirm").val().trim(); 
       $("#upiErr").text(""); $("#upiConfirmErr").text(""); 
       if(!/^[a-zA-Z0-9.\-_]+@[a-zA-Z]{3,}$/.test(upi)){ $("#upiErr").text("Invalid UPI format"); return; } 
       if(upi !== confirm){ $("#upiConfirmErr").text("UPI IDs do not match"); return; } 
       finishPayment(); 
-    }
-    if(method === "card"){ 
+    }if(method === "card"){ 
       var num = $("#cardNo").val().trim(), exp = $("#expiry").val().trim(), cvv = $("#cvv").val().trim(); 
       $("#cardErr").text(""); $("#expErr").text(""); $("#cvvErr").text(""); 
       if(!/^\d{16}$/.test(num)){ $("#cardErr").text("Card number must be 16 digits"); return; } 
       if(!/^(0[1-9]|1[0-2])\/\d{2}$/.test(exp)){ $("#expErr").text("Expiry must be MM/YY"); return; } 
       if(!/^\d{3}$/.test(cvv)){ $("#cvvErr").text("CVV must be 3 digits"); return; } 
       showSection($("#otpSection"));
-    }
-    if(method === "bank"){ 
+    }if(method === "bank"){ 
       var acc = $("#accNo").val().trim(), acc2 = $("#accConfirm").val().trim(), ifsc = $("#ifsc").val().trim(); 
       $("#accErr").text(""); $("#accConfirmErr").text(""); $("#ifscErr").text(""); 
       if(!/^\d{9,12}$/.test(acc)){ $("#accErr").text("Account number must be 9-12 digits"); return; } 
@@ -237,14 +211,12 @@ $(document).ready(function(){
       if(!/^[A-Z]{4}0[A-Z0-9]{6}$/.test(ifsc)){ $("#ifscErr").text("Invalid IFSC code format"); return; } 
       finishPayment(); 
     }
-  });
-  $("#verifyOtp").click(function(){ 
+  });$("#verifyOtp").click(function(){ 
     var otp = $("#otp").val().trim(); 
     $("#otpErr").text(""); 
     if(!/^\d{6}$/.test(otp)){ $("#otpErr").text("OTP must be 6 digits"); return; } 
     finishPayment(); 
   });
-
   function finishPayment(){ showSection($("#successMessage")); }
 });
 </script>
