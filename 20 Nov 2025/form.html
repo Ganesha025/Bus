@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Registration</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { font-family: 'Inter', sans-serif; }
+.input-wrapper { position: relative; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+input, select { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+input::placeholder, select::placeholder { color: transparent; }
+label { position: absolute; left: 1rem; top: 1rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none; background: white; padding: 0 .5rem; transform-origin: left; color: #6B7280; font-weight: 400; }
+input:focus+label, input:not(:placeholder-shown)+label, select:focus+label, select:not([value=""])+label { top: -.5rem; font-size: .75rem; color: #1e1d64; transform: scale(0.9); font-weight: 500; }
+.input-valid { border-color: #10B981 !important; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1); }
+.input-invalid { border-color: #EF4444 !important; box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1); }
+.guide-valid { color: #10B981 !important; }
+.guide-invalid { color: #EF4444 !important; }
+.form-container { background: linear-gradient(135deg, #FFFFFF 0%, #F9FAFB 100%); backdrop-filter: blur(10px); }
+.glass-effect { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
+.floating-label { background: linear-gradient(135deg, #F9FAFB 0%, #FFFFFF 100%); }
+</style>
+</head>
+<body class="bg-gradient-to-br from-white to-gray-100 min-h-screen flex items-center justify-center p-4">
+<div class="w-full max-w-2xl">
+<div class="text-center mb-10">
+<h1 class="text-4xl font-bold bg-gradient-to-r from-[#1e1d64] to-[#1e1d64] bg-clip-text text-transparent mb-3">Student Registration</h1>
+<p class="text-gray-600 text-lg font-medium">Create your academic profile with us</p>
+</div>
+
+<div class="form-container glass-effect rounded-2xl shadow-2xl p-8 transition-all duration-500 hover:shadow-3xl">
+<form id="registrationForm" class="space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="input-wrapper">
+<input type="text" id="initial" placeholder=" " maxlength="3" class="w-full px-5 py-4 border-2 border-gray-100 rounded-xl outline-none focus:border-[#1e1d64] bg-white text-gray-800 font-medium shadow-sm transition-all duration-300">
+<label for="initial" class="floating-label text-gray-500 text-sm">Initial *</label>
+<p id="initialGuide" class="text-xs font-medium mt-2"></p>
+<p class="text-xs text-red-500 font-medium mt-1 error"></p>
+</div>
+
+<div class="input-wrapper">
+<input type="text" id="name" placeholder=" " class="w-full px-5 py-4 border-2 border-gray-100 rounded-xl outline-none focus:border-[#1e1d64] bg-white text-gray-800 font-medium shadow-sm transition-all duration-300">
+<label for="name" class="floating-label text-gray-500 text-sm">Full Name *</label>
+<p id="nameGuide" class="text-xs font-medium mt-2"></p>
+<p class="text-xs text-red-500 font-medium mt-1 error"></p>
+</div>
+</div>
+
+<div class="input-wrapper">
+<input type="date" id="dob" placeholder=" " class="w-full px-5 py-4 border-2 border-gray-100 rounded-xl outline-none focus:border-[#1e1d64] bg-white text-gray-800 font-medium shadow-sm transition-all duration-300">
+<label for="dob" class="floating-label text-gray-500 text-sm">Date of Birth *</label>
+<p id="dobGuide" class="text-xs text-gray-600 font-medium mt-2">Select your birth date (Past years only)</p>
+<p class="text-xs text-red-500 font-medium mt-1 error"></p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="input-wrapper">
+<input type="text" id="email" placeholder=" " class="w-full px-5 py-4 border-2 border-gray-100 rounded-xl outline-none focus:border-[#1e1d64] bg-white text-gray-800 font-medium shadow-sm transition-all duration-300">
+<label for="email" class="floating-label text-gray-500 text-sm">Email Address *</label>
+<p id="emailGuide" class="text-xs text-gray-600 font-medium mt-2">Enter a valid email address</p>
+<p class="text-xs text-red-500 font-medium mt-1 error"></p>
+</div>
+
+<div class="input-wrapper">
+<input type="text" id="phone" placeholder=" " value="+91" class="w-full px-5 py-4 border-2 border-gray-100 rounded-xl outline-none focus:border-[#1e1d64] bg-white text-gray-800 font-medium shadow-sm transition-all duration-300">
+<label for="phone" class="floating-label text-gray-500 text-sm">Phone Number *</label>
+<p id="phoneGuide" class="text-xs text-gray-600 font-medium mt-2">Enter 10 digits after +91</p>
+<p class="text-xs text-red-500 font-medium mt-1 error"></p>
+</div>
+</div>
+
+<div class="input-wrapper">
+<select id="course" class="w-full px-5 py-4 border-2 border-gray-100 rounded-xl outline-none focus:border-[#1e1d64] bg-white text-gray-800 font-medium shadow-sm transition-all duration-300 appearance-none cursor-pointer">
+<option value="" disabled selected hidden></option>
+<option value="Computer Science">Computer Science</option>
+<option value="Information Technology">Information Technology</option>
+<option value="Mechanical Engineering">Mechanical Engineering</option>
+<option value="Electrical Engineering">Electrical Engineering</option>
+<option value="Civil Engineering">Civil Engineering</option>
+<option value="Electronics & Communication">Electronics & Communication</option>
+<option value="Biotechnology">Biotechnology</option>
+<option value="Chemical Engineering">Chemical Engineering</option>
+<option value="Physics">Physics</option>
+<option value="Mathematics">Mathematics</option>
+<option value="English Literature">English Literature</option>
+<option value="Business Administration">Business Administration</option>
+<option value="Economics">Economics</option>
+<option value="Psychology">Psychology</option>
+<option value="Pharmacy">Pharmacy</option>
+<option value="Nursing">Nursing</option>
+<option value="Law">Law</option>
+<option value="Architecture">Architecture</option>
+<option value="Design">Design</option>
+<option value="Journalism">Journalism</option>
+</select>
+<label for="course" class="floating-label text-gray-500 text-sm">Select Course *</label>
+<p class="text-xs text-red-500 font-medium mt-1 error"></p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="input-wrapper">
+<input type="text" id="marks12" placeholder=" " maxlength="3" class="w-full px-5 py-4 border-2 border-gray-100 rounded-xl outline-none focus:border-[#1e1d64] bg-white text-gray-800 font-medium shadow-sm transition-all duration-300">
+<label for="marks12" class="floating-label text-gray-500 text-sm">12th Marks (%) *</label>
+<p id="marks12Guide" class="text-xs font-medium mt-2"></p>
+<p class="text-xs text-red-500 font-medium mt-1 error"></p>
+</div>
+
+<div class="input-wrapper">
+<input type="text" id="marks10" placeholder=" " maxlength="3" class="w-full px-5 py-4 border-2 border-gray-100 rounded-xl outline-none focus:border-[#1e1d64] bg-white text-gray-800 font-medium shadow-sm transition-all duration-300">
+<label for="marks10" class="floating-label text-gray-500 text-sm">10th Marks (%) *</label>
+<p id="marks10Guide" class="text-xs font-medium mt-2"></p>
+<p class="text-xs text-red-500 font-medium mt-1 error"></p>
+</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="input-wrapper relative">
+<input type="password" id="password" placeholder=" " class="w-full px-5 py-4 border-2 border-gray-100 rounded-xl outline-none focus:border-[#1e1d64] bg-white text-gray-800 font-medium shadow-sm transition-all duration-300 pr-12">
+<label for="password" class="floating-label text-gray-500 text-sm">Password *</label>
+<span id="togglePass" class="material-icons absolute right-4 top-4 cursor-pointer text-gray-500 text-xl hover:text-[#1e1d64] transition-colors duration-200">visibility</span>
+<p id="passwordGuide" class="text-xs font-medium mt-2"></p>
+<p class="text-xs text-red-500 font-medium mt-1 error"></p>
+</div>
+
+<div class="input-wrapper relative">
+<input type="password" id="confirmPassword" placeholder=" " class="w-full px-5 py-4 border-2 border-gray-100 rounded-xl outline-none focus:border-[#1e1d64] bg-white text-gray-800 font-medium shadow-sm transition-all duration-300 pr-12">
+<label for="confirmPassword" class="floating-label text-gray-500 text-sm">Confirm Password *</label>
+<span id="toggleConfirmPass" class="material-icons absolute right-4 top-4 cursor-pointer text-gray-500 text-xl hover:text-[#1e1d64] transition-colors duration-200">visibility</span>
+<p id="confirmGuide" class="text-xs text-gray-600 font-medium mt-2">Re-enter your password</p>
+<p class="text-xs text-red-500 font-medium mt-1 error"></p>
+</div>
+</div>
+
+<div id="otpSection" class="hidden space-y-4 p-6 bg-gradient-to-r from-[#1e1d64]/10 to-[#1e1d64]/5 rounded-xl border border-[#1e1d64]/20 transition-all duration-500">
+<p class="text-[#1e1d64] font-semibold text-sm flex items-center">
+<span class="material-icons text-base mr-2">verified</span>
+Enter OTP sent to your mobile number
+</p>
+<input type="number" id="otpInput" maxlength="6" placeholder="Enter 6-digit OTP" class="w-full px-5 py-4 border-2 border-[#1e1d64]/20 rounded-xl outline-none focus:border-[#1e1d64] bg-white text-gray-800 font-medium shadow-sm transition-all duration-300">
+<p class="text-xs text-red-500 font-medium mt-1" id="otpError"></p>
+<button id="verifyOtp" type="button" class="w-full py-4 bg-gradient-to-r from-[#1e1d64] to-[#1e1d64]/90 text-white rounded-xl hover:from-[#1e1d64]/90 hover:to-[#1e1d64]/80 transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+Verify OTP
+</button>
+</div>
+
+<button type="submit" id="submitBtn" class="w-full py-5 bg-gradient-to-r from-[#1e1d64] to-[#1e1d64]/90 text-white rounded-xl hover:from-[#1e1d64]/90 hover:to-[#1e1d64]/80 transition-all duration-300 font-semibold text-lg shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 flex items-center justify-center gap-2">
+<span>Register Now</span>
+<span class="material-icons text-xl">arrow_forward</span>
+</button>
+</form>
+
+<p id="successMessage" class="text-green-600 text-center mt-6 font-semibold text-lg transition-all duration-500 flex items-center justify-center gap-2">
+<span class="material-icons">check_circle</span>
+</p>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(()=>{
+const n=/^[A-Za-z_]{3,50}$/,iR=/^[A-Za-z]{1,3}$/,e=/^[^\s@]+@[^\s@]+\.[^\s@]+$/,p=/^\+91\d{10}$/,pw=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+const today=new Date(),maxDob=new Date(today.getFullYear()-1,11,31);
+$('#dob').attr('max',maxDob.toISOString().split('T')[0]);
+function v(f){
+let val=f.val().trim(),id=f.attr('id'),err=f.siblings('.error'),ok=true,msg='';
+if(!val){ok=false;msg=''}
+else if(id=='initial'&&!iR.test(val)){ok=false;msg='1-3 letters only'}
+else if(id=='name'&&!n.test(val)){ok=false;msg='Letters & underscores only'}
+else if(id=='email'&&!e.test(val)){ok=false;msg='Invalid email'}
+else if(id=='phone'&&!p.test(val)){ok=false;msg='+91 + 10 digits'}
+else if(id=='course'&&!val){ok=false;msg='Select a course'}
+else if(id=='marks12'&&(val<0||val>100||val.length>3)){ok=false;msg='0-100 only'}
+else if(id=='marks10'&&(val<0||val>100||val.length>3)){ok=false;msg='0-100 only'}
+else if(id=='password'&&!pw.test(val)){ok=false;msg='Weak password'}
+else if(id=='confirmPassword'&&val!=$('#password').val()){ok=false;msg='Passwords do not match'}
+err.text(msg);
+f.removeClass('input-valid input-invalid border-[#1e1d64] border-red-500').addClass(ok?'input-valid':'input-invalid');
+return ok;
+}
+$('#initial').on('input',()=>{
+let val=$('#initial').val();
+$('#initialGuide').text(!val?'Required':!/^[A-Za-z]{0,3}$/.test(val)?'Only letters':val.length<1?'At least 1 letter':'Looks good').removeClass('guide-valid guide-invalid').addClass(!val||val.length<1?'guide-invalid':'guide-valid');v($('#initial'))
+})
+$('#name').on('input',()=>{
+let val=$('#name').val();
+$('#nameGuide').text(!val?'Required':/[^A-Za-z_]/.test(val)?'Only letters & underscores':val.length<3?'Min 3 chars':'Looks good').removeClass('guide-valid guide-invalid').addClass(!val||val.length<3?'guide-invalid':'guide-valid');v($('#name'))
+})
+$('#phone').on('input',()=>{
+let val=$('#phone').val();
+if(!val.startsWith('+91'))$('#phone').val('+91');
+let d=val.slice(3).replace(/\D/g,'').slice(0,10);
+$('#phone').val('+91'+d);
+$('#phoneGuide').text(d.length<10?'Enter '+(10-d.length)+' more digits':'Looks good').toggleClass('guide-invalid',d.length<10).toggleClass('guide-valid',d.length==10);v($('#phone'))
+})
+$('#marks12,#marks10').on('input',function(){
+let val=$(this).val();
+$(this).val(val.replace(/\D/g,'').slice(0,3));
+let g=$(this).attr('id')=='marks12'?'#marks12Guide':'#marks10Guide';
+$(g).text(val>100?'Max 100':'Looks good').removeClass('guide-valid guide-invalid').addClass(val>100?'guide-invalid':'guide-valid');v($(this))
+})
+$('#password').on('input',()=>{
+let val=$('#password').val(),msg='';
+msg+=val.length<8?'Min 8 chars. ':'';
+msg+=!/[A-Z]/.test(val)?'Uppercase required. ':'';
+msg+=!/[a-z]/.test(val)?'Lowercase required. ':'';
+msg+=!/\d/.test(val)?'Number required. ':'';
+msg+=!/[\W_]/.test(val)?'Special char required. ':'';
+$('#passwordGuide').text(msg||'Strong password').removeClass('guide-valid guide-invalid').addClass(msg?'guide-invalid':'guide-valid');v($('#password'))
+})
+$('#togglePass').click(()=>{
+let t=$('#password').attr('type')==='password'?'text':'password';
+$('#password').attr('type',t);
+$('#togglePass').text(t==='password'?'visibility':'visibility_off')
+})
+$('#toggleConfirmPass').click(()=>{
+let t=$('#confirmPassword').attr('type')==='password'?'text':'password';
+$('#confirmPassword').attr('type',t);
+$('#toggleConfirmPass').text(t==='password'?'visibility':'visibility_off')
+})
+$('#registrationForm').submit(e=>{
+e.preventDefault();
+let ok=true;
+$('#initial,#name,#dob,#email,#phone,#course,#marks12,#marks10,#password,#confirmPassword').each(function(){if(!v($(this)))ok=false});
+if(ok){
+$('#otpSection').slideDown(300).removeClass('hidden');
+$('#submitBtn').prop('disabled',true).text('Verifying...');
+}
+})
+$('#verifyOtp').click(()=>{
+$('#successMessage').text('✓ Registration Successful!').hide().fadeIn(500);
+setTimeout(()=>{
+$('#registrationForm')[0].reset();
+$('input, select').removeClass('input-valid input-invalid').addClass('border-gray-100');
+$('#phone').val('+91');
+$('#togglePass, #toggleConfirmPass').text('visibility');
+$('#otpSection').slideUp(300).addClass('hidden');
+$('#submitBtn').prop('disabled',false).html('<span>Register Now</span><span class="material-icons text-xl">arrow_forward</span>');
+$('#successMessage').fadeOut(1000);
+},2000)
+})
+})
+</script>
+</body>
+</html>
