@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccination Scheduling Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #f0f4f8;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: fadeIn 0.6s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .header {
+            background: #1e40af;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        .header h1 {
+            color: white;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+        .header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .form-wrapper {
+            padding: 50px 40px;
+        }
+        .card {
+            border: none;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.12);
+        }
+        .card-header {
+            border: none;
+            border-radius: 16px 16px 0 0 !important;
+            padding: 20px 30px;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        .card-body {
+            padding: 30px;
+        }
+        .form-label {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .form-control, .form-select {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #1e40af;
+            box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.1);
+            outline: none;
+        }
+        .form-control:hover, .form-select:hover {
+            border-color: #cbd5e0;
+        }
+        .valid-field {
+            border-color: #48bb78 !important;
+            background: rgba(72, 187, 120, 0.05);
+        }
+        .invalid-field {
+            border-color: #f56565 !important;
+            background: rgba(245, 101, 101, 0.05);
+        }
+        .error-message {
+            color: #f56565;
+            font-size: 0.85rem;
+            margin-top: 6px;
+            display: none;
+            font-weight: 500;
+        }
+        .hint-box {
+            position: absolute;
+            background: #1e293b;
+            color: white;
+            border-radius: 10px;
+            padding: 10px 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 1000;
+            font-size: 0.85rem;
+            display: none;
+            pointer-events: none;
+            font-weight: 500;
+        }
+        .hint-box::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 20px;
+            width: 12px;
+            height: 12px;
+            background: #1e293b;
+            transform: rotate(45deg);
+        }
+        input[type="radio"], input[type="checkbox"] {
+            display: none;
+        }
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .radio-label, .checkbox-label {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #4a5568;
+        }
+        .radio-label:hover, .checkbox-label:hover {
+            border-color: #1e40af;
+            background: rgba(30, 64, 175, 0.05);
+        }
+        input[type="radio"]:checked + .radio-label,
+        input[type="checkbox"]:checked + .checkbox-label {
+            border-color: #1e40af;
+            background: #1e40af;
+            color: white;
+            box-shadow: 0 5px 15px rgba(30, 64, 175, 0.3);
+        }
+        #coMorbiditiesSection {
+            display: none;
+            margin-top: 25px;
+            padding: 25px;
+            background: #f0fdf4;
+            border-radius: 16px;
+            border: 2px dashed #16a34a;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 14px;
+            background: #1e40af;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(30, 64, 175, 0.3);
+            margin-top: 20px;
+        }
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(30, 64, 175, 0.4);
+            background: #1e3a8a;
+        }
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #718096;
+            font-size: 0.9rem;
+            background: #f7fafc;
+            border-radius: 0 0 24px 24px;
+        }
+        .bg-primary { background: linear-gradient(135deg, #667eea, #764ba2) !important; }
+        .bg-success { background: linear-gradient(135deg, #48bb78, #38b2ac) !important; }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .form-wrapper { padding: 30px 20px; }
+            .card-body { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💉 Vaccination Portal</h1>
+            <p>Government Hospital - Record Maintenance System</p>
+        </div>
+        
+        <div class="form-wrapper">
+<form id="vaccinationForm">
+
+    <!-- PERSONAL INFO -->
+    <div class="card">
+        <div class="card-header bg-primary text-white">👤 Personal Information</div>
+        <div class="card-body">
+
+            <div class="mb-3">
+                <label>Full Name</label>
+                <input type="text" class="form-control val-username" id="fullName" required>
+                <div class="error-message"></div>
+            </div>
+
+            <div class="mb-3">
+                <label>Age</label>
+                <input type="number" class="form-control val-age" id="age" required>
+                <div class="error-message"></div>
+            </div>
+
+            <div class="mb-3">
+                <label>Gender</label>
+                <select class="form-control" id="gender" required>
+                    <option value="">Select Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                    <option>Prefer not to say</option>
+                </select>
+                <div class="error-message"></div>
+            </div>
+
+            <div class="mb-3">
+                <label>Aadhaar Number</label>
+                <input type="text" class="form-control val-aadhar" id="aadhaar" maxlength="12" required>
+                <div class="error-message"></div>
+            </div>
+
+            <div class="mb-3">
+                <label>Mobile Number</label>
+                <input type="text" class="form-control val-mobile" id="mobile" maxlength="10" required>
+                <div class="error-message"></div>
+            </div>
+
+            <div class="mb-3">
+                <label>Email</label>
+                <input type="email" class="form-control val-email" id="email" required>
+                <div class="error-message"></div>
+            </div>
+
+            <div class="mb-3">
+                <label>Address</label>
+                <textarea class="form-control val-address" id="address" rows="2" required></textarea>
+                <div class="error-message"></div>
+            </div>
+
+            <div class="mb-3">
+                <label>State</label>
+                <select id="stateSelect" class="form-control" required>
+                    <option value="">Select State</option>
+                </select>
+                <div class="error-message"></div>
+            </div>
+
+            <div class="mb-3">
+                <label>District</label>
+                <select id="districtSelect" class="form-control" disabled required>
+                    <option value="">Select District</option>
+                </select>
+                <div class="error-message"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- VACCINATION DETAILS -->
+    <div class="card">
+        <div class="card-header bg-success text-white">💊 Vaccination Details</div>
+        <div class="card-body">
+
+            <div class="mb-3">
+                <label>Vaccination Dose</label>
+                <select class="form-control" id="vaccineDose" required>
+                    <option value="">Select Dose</option>
+                    <option value="1st">1st Dose</option>
+                    <option value="2nd">2nd Dose</option>
+                    <option value="booster">Booster Dose</option>
+                </select>
+                <div class="error-message"></div>
+            </div>
+
+            <div class="mb-3">
+                <label>Vaccination Center</label>
+                <select class="form-control" id="vaccinationCenter" required>
+                    <option value="">Select Center</option>
+                </select>
+                <div class="error-message"></div>
+            </div>
+
+            <div class="mb-3">
+                <label>Date of Appointment</label>
+                <input type="date" class="form-control val-dob" id="appointmentDate" required>
+                <div class="error-message"></div>
+            </div>
+
+            <div class="mb-3">
+                            <label class="form-label">Symptoms in last 14 days?</label>
+                            <div class="radio-group">
+                                <input type="radio" name="symptoms" id="symptomsYes" value="yes">
+                                <label for="symptomsYes" class="radio-label">Yes</label>
+                                <input type="radio" name="symptoms" id="symptomsNo" value="no" checked>
+                                <label for="symptomsNo" class="radio-label">No</label>
+                            </div>
+                        </div>
+                        <div id="coMorbiditiesSection">
+                            <label class="form-label">Co-morbidities</label>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="diabetes" value="diabetes">
+                                <label for="diabetes" class="checkbox-label">Diabetes</label>
+                                <input type="checkbox" id="hypertension" value="hypertension">
+                                <label for="hypertension" class="checkbox-label">Hypertension</label>
+                                <input type="checkbox" id="heartDisease" value="heartDisease">
+                                <label for="heartDisease" class="checkbox-label">Heart Disease</label>
+                            </div>
+                        </div>
+
+        </div>
+    </div>
+
+    <button type="submit" class="submit-btn">Schedule Vaccination 🚀</button>
+
+</form>
+        </div>
+
+        <div class="footer">
+            <p>© 2023 Government Hospital Vaccination Portal. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+      
+        $(() => {
+            const showError = ($f, msg) => {
+                $f.addClass('invalid-field').removeClass('valid-field');
+                $f.siblings('.error-message').text(msg).show();
+            };
+
+            const hideError = $f => {
+                $f.removeClass('invalid-field').addClass('valid-field');
+                $f.siblings('.error-message').hide();
+            };
+
+            const validateField = $f => {
+                const id = $f.attr('id');
+                let v = $f.val().trim();
+                
+                if (!v) {
+                    showError($f, "This field is required");
+                    return false;
+                }
+
+                if (id === "age" && (v < 18 || v > 200)) {
+                    showError($f, "Must be between 18–200");
+                    return false;
+                }
+
+                if (id === "aadhaar" && !/^\d{12}$/.test(v)) {
+                    showError($f, "12 digits required");
+                    return false;
+                }
+
+                if (id === "mobile" && !/^\d{10}$/.test(v)) {
+                    showError($f, "10 digits required");
+                    return false;
+                }
+
+                if (id === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
+                    showError($f, "Invalid email");
+                    return false;
+                }
+
+                hideError($f);
+                return true;
+            };
+
+            $("#fullName").on("input", function() {
+                this.value = this.value.replace(/[^A-Za-z\s]/g, "");
+            });
+
+            $("#age").on("input", function() {
+                this.value = this.value.replace(/\D/g, "").slice(0, 3);
+                if (+this.value > 200) this.value = "200";
+                validateField($(this));
+            });
+
+            $("#mobile").on("input", function() {
+                this.value = this.value.replace(/\D/g, "").slice(0, 10);
+                validateField($(this));
+            });
+
+            $("#aadhaar").on("input", function() {
+                this.value = this.value.replace(/\D/g, "").slice(0, 12);
+                validateField($(this));
+            });
+
+            const populateStates = () => {
+                southIndiaStatesAndDistricts.forEach(s => {
+                    $("#stateSelect").append(`<option>${s.state}</option>`);
+                });
+            };
+
+            const updateDistricts = () => {
+                let state = $("#stateSelect").val();
+                let dist = $("#districtSelect").empty().prop("disabled", !state);
+                dist.append(`<option value="">Select District</option>`);
+                let obj = southIndiaStatesAndDistricts.find(x => x.state === state);
+                obj?.districts.forEach(d => dist.append(`<option>${d}</option>`));
+            };
+
+            populateStates();
+            $("#stateSelect").change(updateDistricts);
+
+            const hints = {
+                fullName: "Enter your full name",
+                age: "Age must be 18 or older",
+                gender: "Choose gender",
+                aadhaar: "12-digit Aadhaar number",
+                mobile: "10-digit mobile number",
+                email: "Valid email required",
+                address: "Enter full address",
+                vaccineDose: "Choose vaccination dose",
+                appointmentDate: "Pick appointment date"
+            };
+
+            let hintBox = $('<div class="hint-box"></div>').appendTo("body");
+
+            $("input, select, textarea").hover(
+                function(e) {
+                    let id = $(this).attr("id");
+                    if (hints[id]) hintBox.text(hints[id]).show();
+                },
+                () => hintBox.hide()
+            ).mousemove(e => {
+                hintBox.css({top: e.pageY + 15, left: e.pageX + 15});
+            });
+
+            const centers = {
+                "1st": ["City Hospital", "CHC North", "Rural Clinic", "UPHC", "Medical College"],
+                "2nd": ["City Hospital", "CHC North", "Rural Clinic", "Medical College"],
+                "booster": ["City Hospital", "Medical College", "Special Center"]
+            };
+
+            $("#vaccineDose").change(function() {
+                let d = $(this).val();
+                let drop = $("#vaccinationCenter").empty().append('<option value="">Select Vaccination Center</option>');
+                centers[d]?.forEach(c => drop.append(`<option>${c}</option>`));
+            });
+
+            $('input[name="symptoms"]').change(() => {
+                let show = $("#symptomsYes").is(":checked");
+                $("#coMorbiditiesSection").toggle(show);
+                if (!show) $("#coMorbiditiesSection input[type=checkbox]").prop("checked", false);
+            });
+
+            $("#vaccinationForm").submit(function(e) {
+                e.preventDefault();
+                let ok = true;
+
+                $("input[required], select[required], textarea[required]").each(function() {
+                    if (!validateField($(this))) ok = false;
+                });
+
+                if (ok) {
+                    alert("✅ Vaccination scheduled successfully!");
+                    this.reset();
+                } else {
+                    alert("❌ Please fix all errors before submitting.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
