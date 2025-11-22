@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const b = (e, v) => e.style.border = v ? "2px solid green" : "2px solid red"; 
+    populateStates();
+    $("#stateSelect").on("change", updateDistricts);
+
+    const b = (e, v) => e.style.border = v ? "1px solid green" : "1px solid red"; 
     const m = (e, v, t) => { 
         b(e, v); 
         if (e.nextElementSibling) e.nextElementSibling.textContent = v ? "" : t; 
@@ -96,40 +99,25 @@ document.querySelectorAll(".val-salary").forEach(el => {
         if (e.type === "keydown") {
             if (!/[0-9]/.test(e.key) && e.key.length === 1) e.preventDefault();
             if (e.target.value.length >= 7 && e.key.length === 1) e.preventDefault();
-        }
-
-        if (+e.target.value >= 9000000) e.target.value = "8999999";
-        
+        }if (+e.target.value >= 9000000) e.target.value = "8999999";        
         m(e.target, e.target.value !== "" && +e.target.value < 9000000, "Valid salary (< 90 Lakhs)");
     });
 });
 document.querySelectorAll(".val-github").forEach(el => {
     block(el, e => {
         const t = e.target;
-
-        // Validate GitHub URL format
-        const validateGithubURL = () => {
+const validateGithubURL = () => {
             const regex = /^https:\/\/github\.com\/[A-Za-z0-9-_.]{1,39}$/;
             const valid = regex.test(t.value);
             m(t, valid, "Invalid GitHub URL (https://github.com/username)");
-        };
-
-        if (e.type === "keydown") {
-            // Restrict input to valid GitHub username characters (letters, numbers, -, _, .)
+        };if (e.type === "keydown") {
             if (!/[A-Za-z0-9/-_.]/.test(e.key) && e.key.length === 1) e.preventDefault();
-        }
-
-        if (e.type === "paste") {
-            // Allow paste and validate the pasted value
+        }if (e.type === "paste") {
             setTimeout(validateGithubURL, 0);
         }
-
-        // Validate on keydown, paste, and other events (e.g., blur, focus)
         validateGithubURL();
     });
 });
-
-
 const endedDate = document.querySelectorAll(".val-ended-date");
 endedDate.forEach(el => {
     const today = new Date().toISOString().split("T")[0];
@@ -143,17 +131,16 @@ endedDate.forEach(el => {
     });
 });
 
-    document.querySelectorAll(".val-mobile").forEach(el => {
-        block(el, e => {
-            if (e.type === "keydown") {
-                if (!/^[0-9]$/.test(e.key) && e.key.length === 1) e.preventDefault();
-                if (e.target.value.length >= 10 && e.key.length === 1) e.preventDefault();
-            }
-            m(e.target, e.target.value.length === 10, "10 digits required");
-        });
+document.querySelectorAll(".val-mobile").forEach(el => {
+    block(el, e => {
+        const t = e.target;
+        if (e.type === "keydown") {
+            if (!/^[0-9]$/.test(e.key) && e.key.length === 1) e.preventDefault();
+            if (t.value.length >= 10 && e.key.length === 1) e.preventDefault();
+        }const valid = /^[6-9][0-9]{9}$/.test(t.value); 
+        m(t, valid, "Mobile number must start with 6-9 and be 10 digits");
     });
-
-    document.querySelectorAll(".val-pincode").forEach(el => {
+});document.querySelectorAll(".val-pincode").forEach(el => {
         block(el, e => {
             if (e.type === "keydown") {
                 if (!/^[0-9]$/.test(e.key) && e.key.length === 1) e.preventDefault();
@@ -162,24 +149,27 @@ endedDate.forEach(el => {
             m(e.target, e.target.value.length === 6, "6 digits");
         });
     });
-
-    document.querySelectorAll(".val-username").forEach(el => {
-        block(el, e => {
-            if (e.type === "keydown") {
-                if (!/^[A-Za-z]$/.test(e.key) && e.key.length === 1) e.preventDefault();
-            }
-            m(e.target, /^[A-Za-z]+$/.test(e.target.value), "Letters only");
-        });
+document.querySelectorAll(".val-registration-date").forEach(el => {
+    const today = new Date().toISOString().split("T")[0];
+    el.setAttribute("type", "date");
+    el.setAttribute("max", today);
+    block(el, e => m(e.target, e.target.value === endedDate || e.target.value === today, "Select the ended date or today's date"));
+});
+document.querySelectorAll(".val-username").forEach(el => {
+    block(el, e => {
+        const t = e.target;
+        if (e.type === "keydown") {
+            if (!/^[A-Za-z]$/.test(e.key) && e.key.length === 1) e.preventDefault(); // Allow only letters
+            if (t.value.length >= 25 && e.key.length === 1) e.preventDefault(); 
+        }
+        m(t, /^[A-Za-z]{1,25}$/.test(t.value), "Letters only, max 25 characters");
     });
-
-    document.querySelectorAll(".val-address").forEach(el => {
+});document.querySelectorAll(".val-address").forEach(el => {
         block(el, e => {
             if (e.type === "keydown" && e.target.value.length >= 250 && e.key.length === 1) e.preventDefault();
             m(e.target, e.target.value.trim() !== "", "Required");
         });
-    });
-
-    document.querySelectorAll(".val-mark").forEach(el => {
+    });document.querySelectorAll(".val-mark").forEach(el => {
         block(el, e => {
             if (e.type === "keydown") {
                 if (!/^[0-9]$/.test(e.key) && e.key.length === 1) e.preventDefault();
@@ -188,9 +178,7 @@ endedDate.forEach(el => {
             if (+e.target.value > 100) e.target.value = "100";
             m(e.target, e.target.value !== "", "Required");
         });
-    });
-
-    document.querySelectorAll(".val-aadhar").forEach(el => {
+    });document.querySelectorAll(".val-aadhar").forEach(el => {
         block(el, e => {
             if (e.type === "keydown") {
                 if (!/^[0-9]$/.test(e.key) && e.key.length === 1) e.preventDefault();
@@ -218,42 +206,43 @@ endedDate.forEach(el => {
     });
 
     document.querySelectorAll(".val-year").forEach(el => {
-        block(el, e => {
-            if (e.type === "keydown") {
-                if (!/[0-9]/.test(e.key) && e.key.length === 1) e.preventDefault();
-                if (e.target.value.length >= 4 && e.key.length === 1) e.preventDefault();
-            }
-            m(e.target, e.target.value.length === 4, "4 digits");
-        });
+    block(el, e => {
+        if (e.type === "keydown") {
+            if (!/[0-9]/.test(e.key) && e.key.length === 1) e.preventDefault();
+            if (e.target.value.length >= 4 && e.key.length === 1) e.preventDefault();
+        }if (+e.target.value > 2100) e.target.value = "2100";
+        if (+e.target.value < 1900) e.target.value = "1900";
+        m(e.target, e.target.value.length === 4 && +e.target.value >= 1900 && +e.target.value <= 2100, "4 digits, between 1900 and 2100");
     });
+});
+document.querySelectorAll(".val-email").forEach(el => {
+    block(el, e => {
+        const t = e.target;
+        const atIndex = t.value.indexOf('@');
 
-    document.querySelectorAll(".val-email").forEach(el => {
-        block(el, e => {
-            const t = e.target;
-
-            if (e.type === "keydown") {
-                if (!/[A-Za-z0-9@._]/.test(e.key) && e.key.length === 1) e.preventDefault();
-                if (e.key === " ") e.preventDefault();
-                if (e.key === "@" && t.value.includes("@")) e.preventDefault();
+        if (e.type === "keydown") {
+            if (atIndex !== -1) {
+                if (/[0-9]/.test(e.key)) e.preventDefault();
+                if (e.key === " " || e.key === "@" || /[^A-Za-z._]/.test(e.key)) e.preventDefault();
+            } else if (!/[A-Za-z0-9@._]/.test(e.key)) {
+                e.preventDefault();
             }
+        }
 
-            const ok = /^[A-Za-z0-9._]+@[A-Za-z0-9]+\.[A-Za-z]{2,}$/.test(t.value);
-            m(t, ok, "Invalid email");
-        });
+        m(t, /^[A-Za-z0-9._]+@[A-Za-z0-9]+\.[A-Za-z]{2,}$/.test(t.value), "Invalid email");
     });
+});
 
-    document.querySelectorAll(".val-vehicle").forEach(el => {
-        block(el, e => {
-            const t = e.target;
-            if (e.type === "keydown") {
-                if (!/[A-Za-z0-9]/.test(e.key) && e.key.length === 1) e.preventDefault();
-                if (t.value.length >= 12 && e.key.length === 1) e.preventDefault();
-            }
-            t.value = t.value.toUpperCase();
-            const ok = /^[A-Z]{2}[0-9]{2}[A-Z]{1,2}[0-9]{4}$/.test(t.value);
-            m(t, ok, "XX00X/XX0000");
-        });
+document.querySelectorAll(".val-vehicle").forEach(el => {
+    block(el, e => {
+        const t = e.target;
+        if (!/[A-Za-z0-9]/.test(e.key) && e.key.length === 1) e.preventDefault();
+        if (t.value.length >= 10 && e.key.length === 1) e.preventDefault();
+        t.value = t.value.toUpperCase();
+        m(t, /^[A-Za-z0-9]{1,10}$/.test(t.value), "Max 10 characters, no special characters");
     });
+});
+
 });
 
 document.querySelectorAll('input').forEach(input => {
@@ -279,4 +268,23 @@ document.querySelectorAll('input').forEach(input => {
         const t = $(`<div class="toast ${type}">${msg}</div>`).appendTo('body');
         setTimeout(() => t.addClass('show'), 10);
         setTimeout(() => { t.removeClass('show'); setTimeout(() => t.remove(), 300); }, 3000);
+    };
+
+
+       const populateStates = () => {
+        const stateSelect = $("#stateSelect");
+        southIndiaStatesAndDistricts.forEach(stateObj => 
+            stateSelect.append($("<option>").val(stateObj.state).text(stateObj.state))
+        );
+    };
+    const updateDistricts = () => {
+        const stateSelect = $("#stateSelect");
+        const districtSelect = $("#districtSelect");
+        const selectedState = stateSelect.val();
+        const stateObj = southIndiaStatesAndDistricts.find(state => state.state === selectedState);
+        districtSelect.empty().append('<option value="">Select District</option>');
+        districtSelect.prop('disabled', !selectedState);
+        stateObj?.districts.forEach(district => 
+            districtSelect.append($("<option>").val(district).text(district))
+        );
     };
